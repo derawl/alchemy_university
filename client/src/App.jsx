@@ -39,7 +39,7 @@ const App = () => {
     }
   }, [account, etherBalance])
   return (
-    <div>
+    <div className='w-full'>
 
       <BrowserRouter>
         <header className='w-full flex justify-between items-center bg-white sm:px-8 px-4 py-4 border-b border-b[#e6ebf4]'>
@@ -63,7 +63,7 @@ const App = () => {
         }
         {
           !account && (
-            <div className='w-full max-w-7xl mx-auto flex'>
+            <div className='w-100 justify-center mt-20 flex mx-auto '>
               <p>Connect Account</p>
               < Loader />
             </div>

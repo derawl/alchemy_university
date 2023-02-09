@@ -5,5 +5,5 @@
 
 ## solution 1
 ## credits
-- Generate Credits each time the credits come in
-- Reduce these credits
+- Use a credits based system with payments made with the matic token
+- Credits are generated base on the number of credits purchased at a given rate

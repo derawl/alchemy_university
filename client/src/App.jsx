@@ -48,7 +48,7 @@ const App = () => {
 
       <BrowserRouter>
         <header className='w-full flex justify-between items-center bg-white sm:px-8 px-4 py-4 border-b border-b[#e6ebf4]'>
-          <Link to='/'><h1 className="font-extra-bold text-[#000000] text-[24px]">OurAI</h1></Link>
+          <Link to='/'><h1 className="font-bold text-[#000000] text-[24px]">OurAI</h1></Link>
           {/* <img src={logo} alt="logo" className="w-28 object-contain" /> */}
           {account && <p>{account.slice(0, 10)}.... {etherBalance && Math.round(formatEther(etherBalance) * 100) / 100} MATIC</p>}
           <p>Credits:  {accountData && accountData !== undefined ? accountData.credits : 0}</p>

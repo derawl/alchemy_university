@@ -35,7 +35,7 @@ const CreatePost = () => {
     const generateNFT = async (image) => {
         setUrl("")
         setloading(true)
-        const ipfsMetaData = await uploadToIPFS(image)
+        const ipfsMetaData = await uploadToIPFS2()
         console.log(ipfsMetaData)
         //mint
         await mintSend(ipfsMetaData)
@@ -54,9 +54,29 @@ const CreatePost = () => {
         }
     }, [mintState])
 
+    const uploadToIPFS2 = async () => {
+        try {
+            const response = await fetch(`${base_url}/api/v1/post/nft`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(form)
+            })
+
+            const res = await response.json()
+            console.log(res.data)
+            return res.data
+        } catch (err) {
+            alert(err)
+        } finally {
+            setloading(false)
+        }
+    }
+
     const uploadToIPFS = async (imago) => {
         //creates instance to NFT storage
-        const api = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGE1RjVFNjkyOTM2OERGMkZCOGQ4ZjAzOGM5NDc0NTFlRjhhNjg0N2IiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY3NTY3MTk4NTE4NSwibmFtZSI6ImFtcHVsYSJ9.aFgTk0pIz19BAwbB442Z-Xt1BXdnd660htQJ3dkUE-A"
+        const api = ""
         const client = new NFTStorage({ token: api })
         const file = await urltoFile(imago, `${form.name ? form.name : "image"}.jpeg`, { "type": "image/jpeg" })
         const { ipnft } = await client.store({

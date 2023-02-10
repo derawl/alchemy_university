@@ -11,11 +11,10 @@ import { Loader } from './components'
 
 const App = () => {
 
-  const { activateBrowserWallet, account } = useEthers()
+  const { activateBrowserWallet, account, chainId, switchNetwork } = useEthers()
   const etherBalance = useEtherBalance(account)
   const [accounts, setAccount] = useState(null)
   const [accountData, setAccountData] = useContext(UserContext)
-
   async function fetchAccount() {
     setAccountData(null)
     const response = await fetch(`${base_url}/api/v1/accounts`, {
@@ -33,10 +32,16 @@ const App = () => {
     }
   }
   useEffect(() => {
-
     if (account != undefined || account != null) {
       fetchAccount()
     }
+    if (chainId == 137 || chainId == 80001) {
+      console.log("Network Ok")
+    } else {
+      switchNetwork(137)
+    }
+
+
   }, [account, etherBalance])
   return (
     <div className='w-full'>

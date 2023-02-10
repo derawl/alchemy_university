@@ -3,6 +3,8 @@
 - Uplaod the metadata to ipfs
 - Mint the generated nft with the metadata gotten
 
+### The current version works on the polygon testnet so make sure you have some test matic at hand
+
 # Introduction
 
 Welcome to the AI Image Generation Service, where you can purchase image generation credits using Matic cryptocurrency and mint the generated images as non-fungible tokens (NFTs). Our platform leverages cutting-edge AI technology to generate high-quality, unique images that can be used for a variety of purposes, including digital art, marketing materials, and more.
@@ -16,6 +18,8 @@ Purchase image generation credits using Matic cryptocurrency. You can do this th
 Use your credits to generate images. You can specify the type of image you want to generate using a prompt, expect to be wowed by the image generated
 
 Mint the generated image as an NFT. You can then sell or trade your NFT to other collectors or use it as you see fit.
+
+### The current version works on the polygon testnet so make sure you have some test matic at hand
 
 # FAQ
 

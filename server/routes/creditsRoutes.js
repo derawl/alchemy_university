@@ -39,7 +39,12 @@ router.route('/').post(async (req, res) => {
     const { hash } = req.body
     const go = await alchemy.core.getTransactionReceipt(hash)
     const check = await checkIfUsed(hash)
+
     console.log(check)
+    if (go.to.toLowerCase() != "0x81b296999Cf4df45B26Cdd3945BD77a7584B51A6".toLowerCase()) {
+        res.send("Invalid receipt")
+    }
+
     if (check != null) {
         res.send("Invalid receipt")
     } else {

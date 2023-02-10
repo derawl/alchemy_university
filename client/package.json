@@ -35,5 +35,10 @@
     "react-error-overlay": "^6.0.9",
     "tailwindcss": "^3.2.6",
     "vite": "^4.0.0"
-  }
+  },
+  "main": "vite.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
 import { Mainnet, DAppProvider, useEtherBalance, useEthers, Goerli, Mumbai } from '@usedapp/core'
+import { formatEther } from '@ethersproject/units'
 import { getDefaultProvider } from 'ethers'
 import { UserProvider } from './context/UserContext'
 

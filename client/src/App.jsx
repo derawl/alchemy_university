@@ -35,10 +35,10 @@ const App = () => {
     if (account != undefined || account != null) {
       fetchAccount()
     }
-    if (chainId == 137 || chainId == 80001) {
+    if (chainId == 80001) {
       console.log("Network Ok")
     } else {
-      switchNetwork(137)
+      switchNetwork(80001)
     }
 
 

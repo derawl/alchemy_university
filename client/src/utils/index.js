@@ -37,16 +37,22 @@ export function timeStampToDate(unixTime) {
     return dateObj.toLocaleString()
 }
 
-export const subscriptionFee = 0.0003
-export const subScriptionContractAddress = window.location.origin == "http://localhost:5173" ? '0x81b296999Cf4df45B26Cdd3945BD77a7584B51A6' : "0x81b296999Cf4df45B26Cdd3945BD77a7584B51A6"
+export const isLiveDeployed = () => {
+    if (window.location.origin == "http://localhost:5173") {
+        return false
+    }
+    return true
+}
+
+export const subscriptionFee = window.location.origin == "http://localhost:5173" ? 0.0003 : 0.02
+export const subScriptionContractAddress = window.location.origin == "http://localhost:5173" ? '0x81b296999Cf4df45B26Cdd3945BD77a7584B51A6' : "0xd7B1bC34881f8f89Dc544179272E0019C169FB3a"
 export const base_url = window.location.origin == "http://localhost:5173" ? "http://localhost:8000" : "https://alchemy-university.onrender.com"
 
 const chainsVsAddresses = {
     80001: "0x81b296999Cf4df45B26Cdd3945BD77a7584B51A6",
-    137: ""
+    137: "0xd7B1bC34881f8f89Dc544179272E0019C169FB3a"
 }
 export const chainMaps = {
-    5: `https://testnets.opensea.io/assets/goerli/${'replaceWithContractAddress'}`,
     80001: `https://testnets.opensea.io/assets/mumbai/${chainsVsAddresses[80001]}/`,
     137: `https://testnets.opensea.io/assets/polygon/${chainsVsAddresses[137]}/`
 }

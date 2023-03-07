@@ -8,6 +8,7 @@ import { formatEther } from '@ethersproject/units'
 import { base_url } from './utils'
 import { UserContext } from './context/UserContext'
 import { Loader } from './components'
+import { isLiveDeployed } from './utils'
 
 const App = () => {
 
@@ -35,10 +36,20 @@ const App = () => {
     if (account != undefined || account != null) {
       fetchAccount()
     }
-    if (chainId == 80001) {
-      console.log("Network Ok")
+    //network origin
+    //
+    if (isLiveDeployed()) {
+      if (chainId == 137) {
+        console.log("Network Ok")
+      } else {
+        switchNetwork(137)
+      }
     } else {
-      switchNetwork(80001)
+      if (chainId == 80001) {
+        console.log("Network Ok")
+      } else {
+        switchNetwork(80001)
+      }
     }
 
 

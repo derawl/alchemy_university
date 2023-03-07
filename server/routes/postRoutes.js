@@ -30,14 +30,15 @@ router.route('/nftData').get(async (req, res) => {
 
     const settings = {
         apiKey: "Mm0Lzxa6i2fwV1eu3p_EC4D_rS5Ob9uj",
-        network: Network.MATIC_MUMBAI, // Replace with your network.
+        network: process.env.ENV ? Network.MATIC_MUMBAI : Network.MATIC_MAINNET, // Replace with your network.
     };
     const alchemy = new Alchemy(settings);
     let posts;
+    const contractAddress = process.env.CONTRACT_ADDRESS
 
     try {
         await alchemy.nft
-            .getNftsForContract("0x81b296999Cf4df45B26Cdd3945BD77a7584B51A6")
+            .getNftsForContract(contractAddress)
             .then((e) => { posts = e });
         const json = posts["nfts"]
         res.status(200).json({ data: json })

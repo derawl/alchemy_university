@@ -10,7 +10,7 @@ dotenv.config()
 
 const settings = {
     apiKey: process.env.ALCHEMY_API,
-    network: Network.MATIC_MUMBAI,
+    network: process.env.ENV ? Network.MATIC_MUMBAI : Network.MATIC_MAINNET,
 };
 
 const alchemy = new Alchemy(settings);
@@ -39,9 +39,9 @@ router.route('/').post(async (req, res) => {
     const { hash } = req.body
     const go = await alchemy.core.getTransactionReceipt(hash)
     const check = await checkIfUsed(hash)
-
+    const contractAddress = process.env.CONTRACT_ADDRESS
     console.log(check)
-    if (go.to.toLowerCase() != "0x81b296999Cf4df45B26Cdd3945BD77a7584B51A6".toLowerCase()) {
+    if (go.to.toLowerCase() != contractAddress.toLowerCase()) {
         res.send("Invalid receipt")
     }
 

@@ -1,5 +1,6 @@
 import * as dotenv from 'dotenv'
-const allowedOrigins = process.env.ENV ? ['http://localhost:5173'] : ["https://alchemy-university-five.vercel.app"];
+
+const allowedOrigins = process.env.ENV ? ['http://localhost:5173'] : [process.env.API_URL];
 
 export function checkOrigin(req, res, next) {
     // Get the origin header of the request

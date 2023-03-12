@@ -54,7 +54,7 @@ const chainsVsAddresses = {
 }
 export const chainMaps = {
     80001: `https://testnets.opensea.io/assets/mumbai/${chainsVsAddresses[80001]}/`,
-    137: `https://testnets.opensea.io/assets/polygon/${chainsVsAddresses[137]}/`
+    137: `https://opensea.io/assets/matic/${chainsVsAddresses[137]}/`
 }
 
 export async function urltoFile(url, filename, mimeType) {

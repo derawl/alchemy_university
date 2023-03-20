@@ -89,6 +89,7 @@ router.route('/nft').post(async (req, res) => {
             description: prompt
         })
         const ipfsUrl = `https://ipfs.io/ipfs/${ipnft}/metadata.json`
+        console.log(ipfsUrl)
         res.status(200).json({ success: true, data: ipfsUrl })
     } catch (error) {
         console.log(error)

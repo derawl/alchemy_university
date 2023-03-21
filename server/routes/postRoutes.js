@@ -4,7 +4,7 @@ import { v2 as cloudinary } from 'cloudinary'
 import { Network, Alchemy } from "alchemy-sdk";
 import Post from '../mongodb/models/post.js'
 import { Configuration, OpenAIApi } from 'openai'
-import { NFTStorage, File } from 'nft.storage'
+import { NFTStorage, File, Blob } from 'nft.storage'
 
 dotenv.config()
 
@@ -81,7 +81,7 @@ router.route('/nft').post(async (req, res) => {
         const imago = photo
         const api = process.env.NFT_STORAGE
         const client = new NFTStorage({ token: api })
-        const file = await urltoFile(imago, `${name ? name : "image"}.jpeg`, { "type": "image/*" })
+        const file = await urltoFile(imago, `${name ? name : "image"}.jpg`, { "type": "image/jpg" })
         console.log('get nfts')
         const { ipnft } = await client.store({
             image: file,

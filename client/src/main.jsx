@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
-import { Mainnet, DAppProvider, useEtherBalance, useEthers, Goerli, Mumbai } from '@usedapp/core'
+import { Mainnet, DAppProvider, useEtherBalance, useEthers, Goerli, Mumbai, Polygon } from '@usedapp/core'
 import { formatEther } from '@ethersproject/units'
 import { getDefaultProvider } from 'ethers'
 import { UserProvider } from './context/UserContext'
@@ -13,6 +13,7 @@ const config = {
     [Mainnet.chainId]: getDefaultProvider('mainnet'),
     [Goerli.chainId]: getDefaultProvider('goerli'),
     [Mumbai.chainId]: 'https://rpc-mumbai.maticvigil.com/',
+    [Polygon.chainId]: 'https://rpc-mainnet.maticvigil.com',
   },
 }
 

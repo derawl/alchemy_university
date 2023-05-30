@@ -105,24 +105,27 @@ router.route('/nft').post(async (req, res) => {
                 // ...and any other configuration
             });
             const photoUrl = await cloudinary.uploader.upload(photo)
+            console.log(photoUrl)
+            const metadata =  {
+                name: name,
+                description: prompt,
+                image: photoUrl.url
+            }
             const data = [
                 {
-                    path: "metadata.json",
-                    content: {
-                        name: name,
-                        description: prompt,
-                        image: photoUrl
-                    }
+                    "path": "metadata.json",
+                    "content": metadata
                 }
             ]
-            const response = await Moralis.EvmApi.ipfs.uploadFolder({ data });
+            const response = await Moralis.EvmApi.ipfs.uploadFolder({"abi": data});
 
-            const res = response.toJSON();
-            res.status(200).json({ success: true, data: res[0].path })
+            const jsonString = response.toJSON();
+            console.log(jsonString)
+            res.status(200).json({ success: true, data: jsonString[0].path })
 
         } catch (err) {
             console.log("Moralis upload error", err)
-            res.status(500).json({ success: false, message: error })
+            res.status(500).json({ success: false, message: "err" })
         }
     }
 })

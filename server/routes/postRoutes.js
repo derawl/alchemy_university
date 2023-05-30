@@ -5,6 +5,10 @@ import { Network, Alchemy } from "alchemy-sdk";
 import Post from '../mongodb/models/post.js'
 import { Configuration, OpenAIApi } from 'openai'
 import { NFTStorage, File, Blob } from 'nft.storage'
+import Moralis from "moralis";
+import { EvmChain } from "@moralisweb3/common-evm-utils";
+
+
 
 dotenv.config()
 
@@ -16,6 +20,8 @@ cloudinary.config({
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET
 });
+
+
 
 router.route('/').get(async (req, res) => {
     try {
@@ -74,9 +80,9 @@ export async function urltoFile(url, filename, mimeType) {
 
 
 router.route('/nft').post(async (req, res) => {
-
+    const { name, prompt, photo } = req.body
     try {
-        const { name, prompt, photo } = req.body
+
 
         const imago = photo
         const api = process.env.NFT_STORAGE
@@ -93,7 +99,30 @@ router.route('/nft').post(async (req, res) => {
         res.status(200).json({ success: true, data: ipfsUrl })
     } catch (error) {
         console.log(error)
-        res.status(500).json({ success: false, message: error })
+        try {
+            await Moralis.start({
+                apiKey: process.env.MORALIS_API_KEY,
+                // ...and any other configuration
+            });
+            const photoUrl = await cloudinary.uploader.upload(photo)
+            const data = [
+                {
+                    path: "metadata.json",
+                    content: {
+                        name: name,
+                        description: prompt,
+                        image: photoUrl
+                    }
+                }
+            ]
+            const response = await Moralis.EvmApi.ipfs.uploadFolder({ data });
+
+            const res = response.toJSON();
+            res.status(200).json({ success: true, data: res[0].path })
+
+        } catch (err) {
+            res.status(500).json({ success: false, message: error })
+        }
     }
 })
 

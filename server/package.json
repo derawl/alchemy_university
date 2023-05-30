@@ -14,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@moralisweb3/common-evm-utils": "^2.18.4",
     "alchemy-sdk": "^2.4.2",
     "cloudinary": "^1.33.0",
     "cors": "^2.8.5",
@@ -22,6 +23,7 @@
     "express": "^4.18.2",
     "mime": "^3.0.0",
     "mongoose": "^6.8.4",
+    "moralis": "^2.18.4",
     "nft.storage": "^7.0.3",
     "nodemon": "^2.0.20",
     "openai": "^3.1.0"

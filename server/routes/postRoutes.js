@@ -98,7 +98,7 @@ router.route('/nft').post(async (req, res) => {
         console.log(ipfsUrl)
         res.status(200).json({ success: true, data: ipfsUrl })
     } catch (error) {
-        console.log(error)
+        console.log("NFT upload error")
         try {
             await Moralis.start({
                 apiKey: process.env.MORALIS_API_KEY,
@@ -121,6 +121,7 @@ router.route('/nft').post(async (req, res) => {
             res.status(200).json({ success: true, data: res[0].path })
 
         } catch (err) {
+            console.log("Moralis upload error", err)
             res.status(500).json({ success: false, message: error })
         }
     }

@@ -100,11 +100,13 @@ router.route('/nft').post(async (req, res) => {
     } catch (error) {
         console.log("NFT upload error")
         try {
-           if(!Moralis.isInitialized()){
+           if(!Moralis.Core.isStarted()){
             await Moralis.start({
                 apiKey: process.env.MORALIS_API_KEY,
                 // ...and any other configuration
             });
+
+            
            }
             const photoUrl = await cloudinary.uploader.upload(photo)
             console.log(photoUrl)

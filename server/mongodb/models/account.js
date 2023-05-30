@@ -5,7 +5,7 @@ const Account = new mongoose.Schema({
     account: { type: String, required: true },
     time: { type: Date, required: true },
     generated: { type: Number, required: true, default: 0 },
-    credits: { type: Number, required: true, default: 0 },
+    credits: { type: Number, required: true, default: 1 },
     photo: { type: String, required: false, default: '' }
 })
 

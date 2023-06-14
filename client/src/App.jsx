@@ -69,23 +69,20 @@ const App = () => {
           }
         </header>
         {
-          account && (
+         
             <main className='sm:p-8 px-4 py-8 w-full bg-[#f9fafe] min-h-[calc(100vh-73px)]'>
               <Routes>
                 <Route path='/' element={<Home />} />
-                <Route path='/create-post' element={<CreatePost />} />
-              </Routes>
-            </main>
-          )
-        }
-        {
-          !account && (
-            <div className='w-100 justify-center mt-20 flex mx-auto '>
+                <Route path='/create-post' element={account ? <CreatePost /> : <div className='w-100 justify-center mt-20 flex mx-auto '>
               <p>Connect Account</p>
               < Loader />
             </div>
-          )
+          } />
+              </Routes>
+            </main>
+         
         }
+        
       </BrowserRouter>
 
     </div>
